@@ -7,7 +7,12 @@ namespace UnrealBuildTool.Rules
         public ObjectBrowser(ReadOnlyTargetRules Target)
             : base(Target)
         {
-            PrivateIncludePaths.Add("Private");
+			PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+			PrivateIncludePaths.AddRange(
+				new string[] {
+					"Private",
+				});
 
 			PublicDependencyModuleNames.AddRange(
 				new string[] {

@@ -2,7 +2,8 @@
 
 #pragma once
 
-#include "Widgets/SCompoundWidget.h"
+#include "Runtime/Slate/Public/SlateBasics.h"
+#include "Runtime/SlateCore/Public/Widgets/SCompoundWidget.h"
 
 struct FBrowserObject
 {

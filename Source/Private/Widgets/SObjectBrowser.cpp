@@ -1,10 +1,14 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "SObjectBrowser.h"
+
 #include "SObjectBrowserTableRow.h"
+
+#include "Runtime/Core/Public/Modules/ModuleManager.h"
 #include "PropertyEditorModule.h"
 #include "IDetailsView.h"
 #include "EditorFontGlyphs.h"
+#include "Runtime/Engine/Classes/GameFramework/Actor.h"
 
 #include "ClassViewerModule.h"
 #include "SClassPickerDialog.h"
@@ -36,7 +40,7 @@ void SObjectBrowser::Construct( const FArguments& InArgs )
 		/*InNotifyHook=*/ nullptr,
 		/*InSearchInitialKeyFocus=*/ false,
 		/*InViewIdentifier=*/ NAME_None);
-	DetailsViewArgs.DefaultsOnlyVisibility = FDetailsViewArgs::EEditDefaultsOnlyNodeVisibility::Automatic;
+	DetailsViewArgs.DefaultsOnlyVisibility = EEditDefaultsOnlyNodeVisibility::Automatic;
 
 	PropertyView = EditModule.CreateDetailView(DetailsViewArgs);
 
@@ -317,7 +321,7 @@ FText SObjectBrowser::GetFilterClassText() const
 FReply SObjectBrowser::OnClassSelectionClicked()
 {
 	const FText TitleText = LOCTEXT("PickClass", "Pick Class");
-	
+
 	FClassViewerInitializationOptions Options;
 	Options.Mode = EClassViewerMode::ClassPicker;
 
@@ -356,7 +360,7 @@ void SObjectBrowser::HandleListSelectionChanged(TSharedPtr<FBrowserObject> InIte
 
 	TArray< TWeakObjectPtr<UObject> > Selection;
 	Selection.Add(InItem->Object);
-	
+
 	PropertyView->SetObjects(Selection);
 }
 
